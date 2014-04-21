@@ -1,11 +1,28 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+    body {
+        text-align: center;
+    }
+    img {
+        width: 100%;
+        border-top: 1px solid darkgrey;
+        border-left: 1px solid darkgrey;
+        border-right: 1px solid darkgrey;
+    }
+    div {
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
 <script>
     $.getJSON("http://www.reddit.com/user/Shitty_Watercolour/comments.json", function(data) {
         for (index in data.data.children) {
             var image = data.data.children[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
             if (image) {
-                $(document.body).append("<img src=\"" + image[0] + "\"></img>");
+                $("div").append("<img src=\"" + image[0] + "\"></img>");
             }
         };
     });
 </script>
+<div></div>
