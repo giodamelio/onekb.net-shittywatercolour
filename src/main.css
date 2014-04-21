@@ -1,14 +1,9 @@
 body {
     text-align: center;
+    margin: auto;
 }
 img {
     width: 100%;
-    border-top: 1px solid darkgrey;
-    border-left: 1px solid darkgrey;
-    border-right: 1px solid darkgrey;
-}
-div {
+    border: 1px solid darkgrey;
     width: 750px;
-    margin-left: auto;
-    margin-right: auto
 }

@@ -11,7 +11,7 @@ var appendImages = function() {
             var image = comments[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
             lastFullname = comments[index].data.name
             if (image) {
-                $("div").append("<img src=\"" + image[0] + "\"></img>");
+                $(document.body).append("<img src=\"" + image[0] + "\">");
                 gotImage = true;
             } else if (index == 24 && !gotImage) {
                 appendImages()
@@ -27,9 +27,9 @@ appendImages();
 // Load more images when we get near the bottom of the page
 var loadMore = function() {
     if($(window).scrollTop() + $(window).height() > $(document).height() - 200 && lastLoadDone) {
-        $(window).unbind("scroll");
+        $(window).off("scroll");
         appendImages();
-        $(window).bind("scroll", loadMore);
+        $(window).on("scroll", loadMore);
     }
 }
 $(window).scroll(loadMore);
