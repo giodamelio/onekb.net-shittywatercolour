@@ -6,9 +6,10 @@ var appendImages = function() {
     var gotImage = false;
     var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json?after=" + lastFullname
     $.getJSON(url, function(data) {
-        for (index in data.data.children) {
-            var image = data.data.children[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
-            lastFullname = data.data.children[index].data.name
+        var comments = data.data.children;
+        for (index in comments) {
+            var image = comments[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
+            lastFullname = comments[index].data.name
             if (image) {
                 $("div").append("<img src=\"" + image[0] + "\"></img>");
                 gotImage = true;
