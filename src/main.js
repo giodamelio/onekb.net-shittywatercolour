@@ -3,6 +3,7 @@ var lastFullname = null;
 var lastLoadDone = true;
 var appendImages = function() {
     lastLoadDone = false;
+    var gotImage = false;
     var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json";
     if (lastFullname) {
         url = url + "?after=" + lastFullname
@@ -13,8 +14,15 @@ var appendImages = function() {
             if (image) {
                 $("div").append("<img src=\"" + image[0] + "\"></img>");
                 lastFullname = data.data.children[index].data.name
+                gotImage = true;
+            } else {
+                if (index == 24 && !gotImage) {
+                    lastFullname = data.data.children[index].data.name
+                    appendImages()
+                }
             }
         };
+
         lastLoadDone = true;
     });
 };
