@@ -19,7 +19,9 @@
 <script>
     // Load a page of images
     var lastFullname = null;
+    var lastLoadDone = true;
     var appendImages = function() {
+        lastLoadDone = false;
         var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json";
         if (lastFullname) {
             url = url + "?after=" + lastFullname
@@ -32,6 +34,7 @@
                     lastFullname = data.data.children[index].data.name
                 }
             };
+            lastLoadDone = true;
         });
     };
 
@@ -40,7 +43,7 @@
 
     // Load more images when we get near the bottom of the page
     var loadMore = function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 200 && lastLoadDone) {
             $(window).unbind("scroll");
             console.log("Loading more images");
             appendImages();
