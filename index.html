@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <style>
     body {
@@ -16,13 +17,36 @@
     }
 </style>
 <script>
-    $.getJSON("http://www.reddit.com/user/Shitty_Watercolour/comments.json", function(data) {
-        for (index in data.data.children) {
-            var image = data.data.children[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
-            if (image) {
-                $("div").append("<img src=\"" + image[0] + "\"></img>");
-            }
-        };
-    });
+    // Load a page of images
+    var lastFullname = null;
+    var appendImages = function() {
+        var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json";
+        if (lastFullname) {
+            url = url + "?after=" + lastFullname
+        }
+        $.getJSON(url, function(data) {
+            for (index in data.data.children) {
+                var image = data.data.children[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
+                if (image) {
+                    $("div").append("<img src=\"" + image[0] + "\"></img>");
+                    lastFullname = data.data.children[index].data.name
+                }
+            };
+        });
+    };
+
+    // Load the first page on startup
+    appendImages();
+
+    // Load more images when we get near the bottom of the page
+    var loadMore = function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+            $(window).unbind("scroll");
+            console.log("Loading more images");
+            appendImages();
+            $(window).bind("scroll", loadMore);
+        }
+    }
+    $(window).scroll(loadMore);
 </script>
 <div></div>
