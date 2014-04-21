@@ -45,11 +45,11 @@
     var loadMore = function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 200 && lastLoadDone) {
             $(window).unbind("scroll");
-            console.log("Loading more images");
             appendImages();
             $(window).bind("scroll", loadMore);
         }
     }
     $(window).scroll(loadMore);
 </script>
+<h2>Never-ending <a href="http://www.reddit.com/user/Shitty_Watercolour">/u/Shitty_Watercolour</a> paintings in exactly one <a href="http://onekb.net/">one kilobyte</a></h2>
 <div></div>
