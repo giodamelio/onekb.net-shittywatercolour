@@ -10,5 +10,6 @@ html=$(cat src/index.html)
 echo "Concating HTML, Javascript and CSS"
 output="$html<style>$css</style><script>$javascript</script>"
 
-echo "Final output"
-echo $output
+echo "Final output. ${#output} bytes"
+echo $output | tee out.html
+
