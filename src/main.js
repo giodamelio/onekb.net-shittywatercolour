@@ -4,25 +4,18 @@ var lastLoadDone = true;
 var appendImages = function() {
     lastLoadDone = false;
     var gotImage = false;
-    var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json";
-    if (lastFullname) {
-        url = url + "?after=" + lastFullname
-    }
+    var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json?after=" + lastFullname
     $.getJSON(url, function(data) {
         for (index in data.data.children) {
             var image = data.data.children[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
+            lastFullname = data.data.children[index].data.name
             if (image) {
                 $("div").append("<img src=\"" + image[0] + "\"></img>");
-                lastFullname = data.data.children[index].data.name
                 gotImage = true;
-            } else {
-                if (index == 24 && !gotImage) {
-                    lastFullname = data.data.children[index].data.name
-                    appendImages()
-                }
+            } else if (index == 24 && !gotImage) {
+                appendImages()
             }
         };
-
         lastLoadDone = true;
     });
 };
