@@ -7,7 +7,7 @@ var appendImages = function() {
     var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json?after=" + lastFullname
     $.getJSON(url, function(data) {
         var comments = data.data.children;
-        for (index in comments) {
+        for (var index in comments) {
             var image = comments[index].data.body.match(/(http:\/\/i.imgur.com\/(.*))(\?.*)?/);
             lastFullname = comments[index].data.name
             if (image) {
