@@ -1,0 +1,8 @@
+{
+  "name": "shittywatercolour",
+  "version": "1.0.0",
+  "repository": "git@github.com:giodamelio/onekb.net-shittywatercolour.git",
+  "author": "Gio d'Amelio <giodamelio@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
