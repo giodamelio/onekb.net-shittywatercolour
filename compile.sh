@@ -1,8 +1,10 @@
+#!/bin/bash
+
 echo "Running Javascript through the Google Closure Compiler"
-javascript=$(closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS --externs=jquery-1.11.0-externs.js --js=src/main.js)
+javascript=$(npx google-closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS --externs=jquery-1.11.0-externs.js --js=src/main.js)
 
 echo "Running CSS through clean-css"
-css=$(cleancss src/main.css)
+css=$(npx cleancss src/main.css)
 
 echo "Minifing HTML"
 html=$(cat src/index.html)

@@ -4,5 +4,9 @@
   "repository": "git@github.com:giodamelio/onekb.net-shittywatercolour.git",
   "author": "Gio d'Amelio <giodamelio@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "clean-css-cli": "^4.1.11",
+    "google-closure-compiler": "^20180506.0.0"
+  }
 }
