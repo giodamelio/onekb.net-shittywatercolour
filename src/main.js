@@ -4,7 +4,7 @@ var lastLoadDone = true;
 var appendImages = function() {
     lastLoadDone = false;
     var gotImage = false;
-    var url = "http://www.reddit.com/user/Shitty_Watercolour/comments.json?after=" + lastFullname
+    var url = "https://www.reddit.com/user/Shitty_Watercolour/comments.json?after=" + lastFullname
     $.getJSON(url, function(data) {
         var comments = data.data.children;
         for (var index in comments) {
